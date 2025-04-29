@@ -8,11 +8,25 @@ $obj = new stdClass();
 
 // In the past to do that 
 
-$store = new SplObjectStorage();
+// $store = new SplObjectStorage();
 
-$store[$obj] = 'foobar';  // we can't use string as key like $store['string'] = 'foobar';
+// $store[$obj] = 'foobar';  // we can't use string as key like $store['string'] = 'foobar';
 
 
 var_dump($store[$obj]); 
 
  // This approach can restrict garbage collection by keeping reference and that what WeakMap solve
+
+
+ 
+ // Now
+
+$store = new WeakMap();
+
+$store[$obj] = 'foobar';
+
+var_dump($store);
+
+unset($obj);
+
+var_dump($store);
